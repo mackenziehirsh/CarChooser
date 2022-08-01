@@ -443,17 +443,19 @@ int main()
         std::cout << "Invalid input! Ending program." << std::endl;
         return 0;
     }
+   
+    
+    std::cout << std::endl << "Now printing the top " << choice << " cars sorted by your chosen metric:" << std::endl << std::endl;;
     
     cout << "" << endl; 
     cout << "Merge Sort:" << endl;
     
-    std::cout << std::endl << "Now printing the top " << choice << " cars sorted by your chosen metric:" << std::endl << std::endl;;
     for (int i = 1; i <= choice; i++) {
         mergeArray[i].printCar(i);
     }
     
     cout << "" << endl; 
-    cout << "Merge Sort:" << endl;
+    cout << "Heap Sort:" << endl;
     
     for (int i = 1; i <= choice; i++) {
         heapArray[i].printCar(i);
