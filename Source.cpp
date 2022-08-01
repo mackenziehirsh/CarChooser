@@ -26,7 +26,7 @@ struct Car {
 };
 
 void mergePrices(Car* cars, int const left, int const m, int const right) {
-   
+
     int const x1 = m - left + 1;
     int const x2 = right - m;
     float* X = new float[x1];
@@ -71,7 +71,7 @@ void mergePrices(Car* cars, int const left, int const m, int const right) {
 }
 
 void mergeSortPrice(Car* cars, int const left, int const right) {
-   
+
     if (left < right) {
         int m = left + (right - left) / 2;
         mergeSortPrice(cars, left, m);
