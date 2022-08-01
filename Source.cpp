@@ -26,17 +26,18 @@ struct Car {
 };
 
 void mergePrices(Car* cars, int const left, int const m, int const right) {
-
+   
     int const x1 = m - left + 1;
     int const x2 = right - m;
-    float* X = new float[x1];
-    float* Y = new float[x2];
+    Car* X = new Car[x1];
+    Car* Y = new Car[x2];
 
-    for (unsigned int i = 0; i < x1; i++) {
-        X[i] = (cars[left + i].price);
+    for (auto i = 0; i < x1; i++) {
+        X[i] = (cars[left + i]);
+       
     }
-    for (unsigned int j = 0; j < x2; j++) {
-        Y[j] = (cars[m + 1 + j].price);
+    for (auto j = 0; j < x2; j++) {
+        Y[j] = (cars[m + 1 + j]);
     }
 
     int i = 0;
@@ -44,25 +45,25 @@ void mergePrices(Car* cars, int const left, int const m, int const right) {
     int k = left;
 
     while (i < x1 && j < x2) {
-        if (X[i] <= Y[j]) {
-            cars[k].price = X[i];
+        if (X[i].price < Y[j].price) {
+            cars[k] = X[i];
             i++;
         }
         else {
-            cars[k].price = Y[j];
+            cars[k] = Y[j];
             j++;
         }
         k++;
     }
 
     while (i < x1) {
-        cars[k].price = X[i];
+        cars[k] = X[i];
         i++;
         k++;
     }
 
     while (j < x2) {
-        cars[k].price = Y[j];
+        cars[k] = Y[j];
         j++;
         k++;
     }
@@ -71,7 +72,7 @@ void mergePrices(Car* cars, int const left, int const m, int const right) {
 }
 
 void mergeSortPrice(Car* cars, int const left, int const right) {
-
+   
     if (left < right) {
         int m = left + (right - left) / 2;
         mergeSortPrice(cars, left, m);
@@ -84,14 +85,14 @@ void mergeMileage(Car* cars, int const left, int const m, int const right) {
 
     int const x1 = m - left + 1;
     int const x2 = right - m;
-    float* X = new float[x1];
-    float* Y = new float[x2];
+    Car* X = new Car[x1];
+    Car* Y = new Car[x2];
 
-    for (unsigned int i = 0; i < x1; i++) {
-        X[i] = (cars[left + i].mileage);
+    for (auto i = 0; i < x1; i++) {
+        X[i] = cars[left + i];
     }
-    for (unsigned int j = 0; j < x2; j++) {
-        Y[j] = (cars[m + 1 + j].mileage);
+    for (auto j = 0; j < x2; j++) {
+        Y[j] = cars[m + 1 + j];
     }
 
     int i = 0;
@@ -99,25 +100,25 @@ void mergeMileage(Car* cars, int const left, int const m, int const right) {
     int k = left;
 
     while (i < x1 && j < x2) {
-        if (X[i] <= Y[j]) {
-            cars[k].mileage = X[i];
+        if (X[i].mileage < Y[j].mileage) {
+            cars[k] = X[i];
             i++;
         }
         else {
-            cars[k].mileage = Y[j];
+            cars[k] = Y[j];
             j++;
         }
         k++;
     }
 
     while (i < x1) {
-        cars[k].mileage = X[i];
+        cars[k] = X[i];
         i++;
         k++;
     }
 
     while (j < x2) {
-        cars[k].mileage = Y[j];
+        cars[k]= Y[j];
         j++;
         k++;
     }
@@ -139,14 +140,14 @@ void mergeMPG(Car* cars, int const left, int const m, int const right) {
 
     int const x1 = m - left + 1;
     int const x2 = right - m;
-    float* X = new float[x1];
-    float* Y = new float[x2];
+    Car* X = new Car[x1];
+    Car* Y = new Car[x2];
 
-    for (unsigned int i = 0; i < x1; i++) {
-        X[i] = (cars[left + i].mpg);
+    for (auto i = 0; i < x1; i++) {
+        X[i] = (cars[left + i]);
     }
-    for (unsigned int j = 0; j < x2; j++) {
-        Y[j] = (cars[m + 1 + j].mpg);
+    for (auto j = 0; j < x2; j++) {
+        Y[j] = (cars[m + 1 + j]);
     }
 
     int i = 0;
@@ -154,25 +155,25 @@ void mergeMPG(Car* cars, int const left, int const m, int const right) {
     int k = left;
 
     while (i < x1 && j < x2) {
-        if (X[i] >= Y[j]) {
-            cars[k].mpg = X[i];
+        if (X[i].mpg >= Y[j].mpg) {
+            cars[k] = X[i];
             i++;
         }
         else {
-            cars[k].mpg = Y[j];
+            cars[k] = Y[j];
             j++;
         }
         k++;
     }
 
     while (i < x1) {
-        cars[k].mpg = X[i];
+        cars[k] = X[i];
         i++;
         k++;
     }
 
     while (j < x2) {
-        cars[k].mpg = Y[j];
+        cars[k] = Y[j];
         j++;
         k++;
     }
@@ -190,8 +191,6 @@ void mergeSortMPG(Car* cars, int const left, int const right) {
     }
 
 }
-
-
 
 
 void heapifyPrice(Car* cars, int size, int i) {
@@ -392,7 +391,7 @@ int main()
         //merge sort on price
         auto start = std::chrono::high_resolution_clock::now();
         //call merge sort on mergeArray, mergeArray[i].price to access the ints
-        mergeSortPrice(mergeArray,1, cars.size() - 1);
+        mergeSortPrice(mergeArray,0, cars.size() - 1);
         auto stop = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         std::cout << "Time taken using merge sort: " << duration.count() << " microseconds" << std::endl;
@@ -407,7 +406,7 @@ int main()
         //merge sort on mileage
         auto start = std::chrono::high_resolution_clock::now();
         //call merge sort on mergeArray, mergeArray[i].mileage to access the floats
-        mergeSortMileage(mergeArray, 0, cars.size());
+        mergeSortMileage(mergeArray, 0, cars.size()-1);
         auto stop = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         std::cout << "Time taken using merge sort: " << duration.count() << " microseconds" << std::endl;
@@ -444,11 +443,18 @@ int main()
         std::cout << "Invalid input! Ending program." << std::endl;
         return 0;
     }
-
+    
+    cout << "" << endl; 
+    cout << "Merge Sort:" << endl;
+    
     std::cout << std::endl << "Now printing the top " << choice << " cars sorted by your chosen metric:" << std::endl << std::endl;;
     for (int i = 1; i <= choice; i++) {
         mergeArray[i].printCar(i);
     }
+    
+    cout << "" << endl; 
+    cout << "Merge Sort:" << endl;
+    
     for (int i = 1; i <= choice; i++) {
         heapArray[i].printCar(i);
     }
