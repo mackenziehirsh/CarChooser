@@ -26,7 +26,7 @@ struct Car {
 };
 
 void mergePrices(Car* cars, int const left, int const m, int const right) {
-   
+
     int const x1 = m - left + 1;
     int const x2 = right - m;
     Car* X = new Car[x1];
@@ -34,7 +34,7 @@ void mergePrices(Car* cars, int const left, int const m, int const right) {
 
     for (auto i = 0; i < x1; i++) {
         X[i] = (cars[left + i]);
-       
+
     }
     for (auto j = 0; j < x2; j++) {
         Y[j] = (cars[m + 1 + j]);
@@ -72,7 +72,7 @@ void mergePrices(Car* cars, int const left, int const m, int const right) {
 }
 
 void mergeSortPrice(Car* cars, int const left, int const right) {
-   
+
     if (left < right) {
         int m = left + (right - left) / 2;
         mergeSortPrice(cars, left, m);
@@ -118,7 +118,7 @@ void mergeMileage(Car* cars, int const left, int const m, int const right) {
     }
 
     while (j < x2) {
-        cars[k]= Y[j];
+        cars[k] = Y[j];
         j++;
         k++;
     }
@@ -391,7 +391,7 @@ int main()
         //merge sort on price
         auto start = std::chrono::high_resolution_clock::now();
         //call merge sort on mergeArray, mergeArray[i].price to access the ints
-        mergeSortPrice(mergeArray,0, cars.size() - 1);
+        mergeSortPrice(mergeArray, 0, cars.size() - 1);
         auto stop = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         std::cout << "Time taken using merge sort: " << duration.count() << " microseconds" << std::endl;
@@ -406,7 +406,7 @@ int main()
         //merge sort on mileage
         auto start = std::chrono::high_resolution_clock::now();
         //call merge sort on mergeArray, mergeArray[i].mileage to access the floats
-        mergeSortMileage(mergeArray, 0, cars.size()-1);
+        mergeSortMileage(mergeArray, 0, cars.size() - 1);
         auto stop = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
         std::cout << "Time taken using merge sort: " << duration.count() << " microseconds" << std::endl;
@@ -443,24 +443,19 @@ int main()
         std::cout << "Invalid input! Ending program." << std::endl;
         return 0;
     }
-   
-    
+
     std::cout << std::endl << "Now printing the top " << choice << " cars sorted by your chosen metric:" << std::endl << std::endl;;
-    
-    cout << "" << endl; 
-    cout << "Merge Sort:" << endl;
-    
+    std::cout << "Merge Sort:" << std::endl;
     for (int i = 1; i <= choice; i++) {
         mergeArray[i].printCar(i);
     }
-    
-    cout << "" << endl; 
-    cout << "Heap Sort:" << endl;
-    
+    std::cout << "----------------------------------------------------------------" << std::endl;
+    std::cout << std::endl;
+    std::cout << "Heap Sort:" << std::endl;
     for (int i = 1; i <= choice; i++) {
         heapArray[i].printCar(i);
     }
-    std::cout << "----------------------------------------------------------------" << std::endl;
+    std::cout << "----------------------------------------------------------------" << std::endl << std::endl;
     std::cout << "Note: ties are not broken in any particular order." << std::endl;
     std::cout << std::endl << "Thank you for using our Used Car Finder!" << std::endl;
     return 0;
